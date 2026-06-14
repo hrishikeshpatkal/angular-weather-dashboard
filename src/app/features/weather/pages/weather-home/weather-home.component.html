@@ -1,0 +1,25 @@
+<section class="weather-shell">
+  <div class="weather-panel">
+    <div class="weather-meta">
+      <div>
+        <p class="label">Minimal Weather</p>
+        <h1>{{ weather().city }}</h1>
+        <p class="description">{{ weather().description }}</p>
+      </div>
+      <div class="current-temp">{{ weather().temp }}°</div>
+    </div>
+
+    <weather-search-bar
+      [city]="city"
+      (cityChange)="city = $event"
+      (search)="searchCity()"
+    ></weather-search-bar>
+
+    <p class="error" *ngIf="error()">{{ error() }}</p>
+
+    <weather-card [weather]="weather()"></weather-card>
+    <forecast-card [forecast]="weather().hourly"></forecast-card>
+
+    <p class="updated">Updated {{ weather().updated }}</p>
+  </div>
+</section>
